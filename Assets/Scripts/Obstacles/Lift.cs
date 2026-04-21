@@ -2,7 +2,6 @@ using UnityEngine;
 
 public class Lift : MonoBehaviour
 {
-
     private Vector3 startingPos;
     private bool movingToEnd = true;
 
@@ -11,11 +10,12 @@ public class Lift : MonoBehaviour
     public float Speed = 2f;
     public float Tolerance = 0.01f;
     public float WaitTime = 2f;
-    private float waitTimer = 0f;
-    public bool isWaiting = false;
-
     public bool IsDoor = false;
+
+    private float waitTimer = 0f;
+    private bool isWaiting = false;
     private bool isActive = true;
+
     void Start()
     {
         startingPos = transform.position;
@@ -23,41 +23,36 @@ public class Lift : MonoBehaviour
 
     void Update()
     {
-        TogglePlatforms();
-        if (isWaiting)
+        if (!isActive || isWaiting)
         {
-            waitTimer -= Time.deltaTime;
-            if (waitTimer <= 0)
+            if (isWaiting)
             {
-                movingToEnd = !movingToEnd;
-                waitTimer = 0;
-                isWaiting = false;
+                waitTimer -= Time.deltaTime;
+                if (waitTimer <= 0)
+                {
+                    movingToEnd = !movingToEnd;
+                    waitTimer = 0;
+                    isWaiting = false;
+                }
             }
+            return;
         }
+
+        MoveLift();
     }
 
-    void TogglePlatforms()
+    void MoveLift()
     {
-        if (!isActive) return;
         Vector3 target = movingToEnd ? EndPos : startingPos;
-
-
         transform.position = Vector3.MoveTowards(transform.position, target, Speed * Time.deltaTime);
 
-        if (Vector3.Distance(transform.position, target) <= Tolerance && !IsDoor && !isWaiting)
+        if (Vector3.Distance(transform.position, target) <= Tolerance && !IsDoor)
         {
             waitTimer = WaitTime;
             isWaiting = true;
         }
     }
 
-    public void SetActive()
-    {
-        isActive = true;
-    }
-
-    public void SetInactive()
-    {
-        isActive = false;
-    }
+    public void SetActive() => isActive = true;
+    public void SetInactive() => isActive = false;
 }

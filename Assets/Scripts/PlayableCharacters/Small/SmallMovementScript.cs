@@ -10,11 +10,17 @@ public class SmallMovementScript : MonoBehaviour
     [SerializeField] private float moveSpeed = 5f;
     [SerializeField] private float jumpForce = 5f;
     private bool hasJumped = false;
+    private bool isRepairingBig = false; 
 
     public LayerMask GroundLayer;
     public Vector2 BoxSize = new Vector2(0.1f, 0.2f);
     public float RayLength;
 
+    [Header("Repair Settings")]
+    public float RepairRate = 15f;
+    private bool isNearBig = false;
+    private BigHpScripts bigHp;
+    private float healAccumulator = 0f;
 
     private Rigidbody2D rb;
     private float horizontalInput;
@@ -36,14 +42,60 @@ public class SmallMovementScript : MonoBehaviour
         GroundCheck();
 
         Jump();
+
+
+        if(isNearBig && Input.GetMouseButton(1) && characterManager.BigNeedsRepair)
+{
+            isRepairingBig = true;
+            healAccumulator += RepairRate * Time.deltaTime;
+            // In SmallMovementScript
+            if (healAccumulator >= 1f)
+            {
+                bigHp.Heal(Mathf.FloorToInt(healAccumulator));
+                healAccumulator = 0f;
+                Debug.Log($"IsBigDead: {CharacterManager.Instance.IsBigDead}, BigNeedsRepair: {CharacterManager.Instance.BigNeedsRepair}");
+
+                if (CharacterManager.Instance.IsBigDead && !CharacterManager.Instance.BigNeedsRepair)
+                {
+                    Debug.Log("Calling Revive!");
+                    bigHp.Revive();
+                }
+            }
+        }
+        else
+        {
+            isRepairingBig = false;
+            healAccumulator = 0f;
+        }
+        
     }
 
     private void FixedUpdate()
     {
-        if (characterManager.activeCharacter == ActiveCharacter.Big || characterManager.IsHacking == true) {return; }
+        if (characterManager.activeCharacter == ActiveCharacter.Big || characterManager.IsHacking == true || isRepairingBig) {return; }
 
         Move();
     }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Big"))
+        {
+            isNearBig = true;
+            bigHp = other.GetComponent<BigHpScripts>();
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.CompareTag("Big"))
+        {
+            isNearBig = false;
+            bigHp = null;
+            isRepairingBig = false;
+        }
+    }
+
     private void Move()
     {
         if (horizontalInput != 0)
@@ -55,6 +107,8 @@ public class SmallMovementScript : MonoBehaviour
 
     private void Jump()
     {
+        if (characterManager.activeCharacter == ActiveCharacter.Big || characterManager.IsHacking == true || isRepairingBig) { return; }
+
         if (Input.GetKeyDown(KeyCode.Space) && !hasJumped)
         {
             hasJumped = true;
@@ -62,6 +116,7 @@ public class SmallMovementScript : MonoBehaviour
         }
     }
 
+    
     private void GroundCheck()
     {
 

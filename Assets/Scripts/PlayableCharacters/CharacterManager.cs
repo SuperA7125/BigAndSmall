@@ -12,6 +12,9 @@ public class CharacterManager : MonoBehaviour
     public bool IsSmallDead = false;
 
     public bool IsHacking = false;
+    
+    public bool BigNeedsRepair = false;
+
     private void Awake()
     {
         if (Instance == null)

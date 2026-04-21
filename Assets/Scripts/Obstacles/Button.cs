@@ -3,14 +3,12 @@ using UnityEngine;
 
 public class Button : MonoBehaviour
 {
-
     [Header("Button Settings")]
     public List<GameObject> Lifts = new List<GameObject>();
-
     public List<Lift> ConnectedDoors = new List<Lift>();
+    public List<CoopLift> ConnectedCoopLifts = new List<CoopLift>();
 
     [SerializeField] private float hackDuration = 5f;
-
     [SerializeField] private bool canHack = false;
     [SerializeField] private bool isHacking = false;
     [SerializeField] private bool isHacked = false;
@@ -19,23 +17,17 @@ public class Button : MonoBehaviour
     void Awake()
     {
         SetDoorsInactive();
-
         DeactivateLifts();
+        DeactivateCoopLifts(); // add this
     }
 
-    private void Update()
+    void Update()
     {
         if (CharacterManager.Instance.activeCharacter == ActiveCharacter.Big)
-        {
             canHack = false;
-        }
-        if (canHack && !isHacking)
-        {
-            if (Input.GetKeyDown(KeyCode.E))
-            {
-                StartHacking();
-            }
-        }
+
+        if (canHack && !isHacking && Input.GetKeyDown(KeyCode.E))
+            StartHacking();
 
         if (isHacking && hackTimer > 0f)
         {
@@ -52,23 +44,17 @@ public class Button : MonoBehaviour
         }
     }
 
-
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Small") && !isHacked && CharacterManager.Instance.activeCharacter == ActiveCharacter.Small)
-        {
             canHack = true;
-        }
     }
+
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.CompareTag("Small"))
-        {
             canHack = false;
-        }
     }
-
-
 
     void StartHacking()
     {
@@ -76,8 +62,6 @@ public class Button : MonoBehaviour
         CharacterManager.Instance.IsHacking = true;
         hackTimer = hackDuration;
     }
-
-
 
     void SetDoorsInactive()
     {
@@ -88,27 +72,30 @@ public class Button : MonoBehaviour
         }
     }
 
-    void DeactivateLifts()
+    void SetDoorsActive()
     {
-        foreach (GameObject lift in Lifts)
-        {
-            lift.SetActive(false);
-        }
+        foreach (Lift lift in ConnectedDoors)
+            lift.SetActive();
     }
 
     void ActivateLifts()
     {
         foreach (GameObject lift in Lifts)
-        {
             lift.SetActive(true);
-        }
+
+        foreach (CoopLift lift in ConnectedCoopLifts)
+            lift.SetActive();
     }
 
-    void SetDoorsActive()
+    void DeactivateLifts()
     {
-        foreach (Lift lift in ConnectedDoors)
-        {
-            lift.SetActive();
-        }
+        foreach (GameObject lift in Lifts)
+            lift.SetActive(false);
+    }
+
+    void DeactivateCoopLifts()
+    {
+        foreach (CoopLift lift in ConnectedCoopLifts)
+            lift.SetInactive();
     }
 }
