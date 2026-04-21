@@ -926,10 +926,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b67fcf66e29574c45a1ec067c5c1799a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Button
-  Lifts:
-  - {fileID: 2127213423}
+  ConnectedLifts: []
   ConnectedDoors:
   - {fileID: 930839275}
+  ConnectedCoopLifts: []
+  hackProgressBar: {fileID: 0}
   hackDuration: 5
   canHack: 0
   isHacking: 0
@@ -1016,7 +1017,6 @@ MonoBehaviour:
   Speed: 1.5
   Tolerance: 0.01
   WaitTime: 2
-  isWaiting: 0
   IsDoor: 0
 --- !u!212 &930839276
 SpriteRenderer:
@@ -1385,7 +1385,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!212 &1832150412
 SpriteRenderer:
   serializedVersion: 2
@@ -1780,7 +1780,6 @@ MonoBehaviour:
   Speed: 1.5
   Tolerance: 0.01
   WaitTime: 2
-  isWaiting: 0
   IsDoor: 0
 --- !u!61 &2127213427
 BoxCollider2D:
@@ -1828,6 +1827,71 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!1001 &8655530822648597820
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2352972512484827276, guid: cc73cec644923d94c9a73100c340a27f, type: 3}
+      propertyPath: m_ColliderPaths.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6984458677567139012, guid: cc73cec644923d94c9a73100c340a27f, type: 3}
+      propertyPath: m_Name
+      value: PushableBox
+      objectReference: {fileID: 0}
+    - target: {fileID: 6984458677567139012, guid: cc73cec644923d94c9a73100c340a27f, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8368173330492578075, guid: cc73cec644923d94c9a73100c340a27f, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8368173330492578075, guid: cc73cec644923d94c9a73100c340a27f, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8368173330492578075, guid: cc73cec644923d94c9a73100c340a27f, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8368173330492578075, guid: cc73cec644923d94c9a73100c340a27f, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8368173330492578075, guid: cc73cec644923d94c9a73100c340a27f, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8368173330492578075, guid: cc73cec644923d94c9a73100c340a27f, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8368173330492578075, guid: cc73cec644923d94c9a73100c340a27f, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8368173330492578075, guid: cc73cec644923d94c9a73100c340a27f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8368173330492578075, guid: cc73cec644923d94c9a73100c340a27f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8368173330492578075, guid: cc73cec644923d94c9a73100c340a27f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: cc73cec644923d94c9a73100c340a27f, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -1843,3 +1907,4 @@ SceneRoots:
   - {fileID: 905357513}
   - {fileID: 1832150413}
   - {fileID: 478859614}
+  - {fileID: 8655530822648597820}

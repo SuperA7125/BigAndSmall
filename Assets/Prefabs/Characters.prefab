@@ -514,7 +514,7 @@ MonoBehaviour:
   jumpForce: 7
   GroundLayer:
     serializedVersion: 2
-    m_Bits: 8
+    m_Bits: 264
   BoxSize: {x: 0.1, y: 0.2}
   RayLength: 1
   RepairRate: 50
