@@ -4,10 +4,11 @@ using UnityEngine;
 public class Button : MonoBehaviour
 {
     [Header("Button Settings")]
-    public List<GameObject> Lifts = new List<GameObject>();
+    public List<Lift> ConnectedLifts = new List<Lift>();
     public List<Lift> ConnectedDoors = new List<Lift>();
     public List<CoopLift> ConnectedCoopLifts = new List<CoopLift>();
 
+    public HpBar hackProgressBar;
     [SerializeField] private float hackDuration = 5f;
     [SerializeField] private bool canHack = false;
     [SerializeField] private bool isHacking = false;
@@ -19,6 +20,7 @@ public class Button : MonoBehaviour
         SetDoorsInactive();
         DeactivateLifts();
         DeactivateCoopLifts(); // add this
+        hackProgressBar.gameObject.SetActive(false);
     }
 
     void Update()
@@ -42,6 +44,9 @@ public class Button : MonoBehaviour
                 SetDoorsActive();
             }
         }
+
+        if (isHacking)
+            hackProgressBar.UpdateHp(hackTimer);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -61,6 +66,8 @@ public class Button : MonoBehaviour
         isHacking = true;
         CharacterManager.Instance.IsHacking = true;
         hackTimer = hackDuration;
+        hackProgressBar.Setup(hackDuration, hackDuration); // max = hackDuration, current = full
+        hackProgressBar.gameObject.SetActive(true); // show on start
     }
 
     void SetDoorsInactive()
@@ -78,19 +85,18 @@ public class Button : MonoBehaviour
             lift.SetActive();
     }
 
-    void ActivateLifts()
-    {
-        foreach (GameObject lift in Lifts)
-            lift.SetActive(true);
-
-        foreach (CoopLift lift in ConnectedCoopLifts)
-            lift.SetActive();
-    }
-
     void DeactivateLifts()
     {
-        foreach (GameObject lift in Lifts)
-            lift.SetActive(false);
+        foreach (Lift lift in ConnectedLifts)
+            lift.SetInactive(); // was lift.SetActive(false)
+    }
+
+    void ActivateLifts()
+    {
+        foreach (Lift lift in ConnectedLifts)
+            lift.SetActive(); // was lift.SetActive(true)
+        foreach (CoopLift lift in ConnectedCoopLifts)
+            lift.SetActive();
     }
 
     void DeactivateCoopLifts()
