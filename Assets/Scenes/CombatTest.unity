@@ -806,6 +806,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EnemyHpScript
   MaxHp: 1000
   currentHp: 0
+  animator: {fileID: 0}
 --- !u!58 &956870139
 CircleCollider2D:
   m_ObjectHideFlags: 0

@@ -475,6 +475,7 @@ MonoBehaviour:
   AttackRadius: 0.3
   Damage: 20
   facingRight: 1
+  currentState: 0
 --- !u!114 &7792931003568709230
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -489,3 +490,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EnemyHpScript
   MaxHp: 250
   currentHp: 0
+  animator: {fileID: 0}

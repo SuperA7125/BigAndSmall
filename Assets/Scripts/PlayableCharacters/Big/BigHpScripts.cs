@@ -34,15 +34,17 @@ public class BigHpScripts : MonoBehaviour
     }
     public void TakeDamage(int damage)
     {
+        if (currentHp <= 0) return;
+
         currentHp -= damage;
 
         if (currentHp <= 0)
         {
-            Die(); // die first, no hitstop on death
+            Die();
             return;
         }
 
-        // only hitstop and hit animation if still alive
+        animator.ResetTrigger("Attack"); // reset any pending attack
         animator.SetTrigger("GotHit");
         StartCoroutine(HitStop());
     }

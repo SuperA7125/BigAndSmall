@@ -25,10 +25,10 @@ public class EnemyBehavior : MonoBehaviour
     private bool isGrounded = false;
     private bool hasFlippedOnWall = false;
 
-    private Rigidbody2D rb;
+    public Rigidbody2D rb;
     private WallDetection wallDetection;
     private GroundDetection groundDetection;
-    private EnemyState currentState = EnemyState.Idle;
+    public EnemyState currentState = EnemyState.Idle;
     private float intendedDirection = 1f;
 
     private void Awake()
@@ -57,7 +57,9 @@ public class EnemyBehavior : MonoBehaviour
         {
             case EnemyState.Idle: Patrol(); break;
             case EnemyState.Chasing: ChasePlayer(); break;
-            case EnemyState.Attacking: AttackPlayer(); break; 
+            case EnemyState.Attacking: AttackPlayer(); break;
+            case EnemyState.Dead: return;
+            case EnemyState.Hit: return; // freeze everything during hit
         }
 
         UpdateAnimations();
@@ -236,6 +238,11 @@ public class EnemyBehavior : MonoBehaviour
         else if (col.CompareTag("Big")) IsSeeingBig = value;
     }
 
+    public void OnHitAnimationEnd()
+    {
+        animator.SetBool("IsAttacking", false);
+        currentState = EnemyState.Chasing;
+    }
     public void OnAttackAnimationEnd()
     {
         animator.SetBool("IsAttacking", false);
@@ -249,4 +256,4 @@ public class EnemyBehavior : MonoBehaviour
     }
 }
 
-public enum EnemyState { Idle, Chasing, Attacking }
+public enum EnemyState { Idle, Chasing, Attacking, Dead, Hit }
