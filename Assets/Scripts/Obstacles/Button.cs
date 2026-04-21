@@ -37,6 +37,7 @@ public class Button : MonoBehaviour
             if (hackTimer <= 0)
             {
                 isHacked = true;
+                hackProgressBar.gameObject.SetActive(false);
                 isHacking = false;
                 CharacterManager.Instance.IsHacking = false;
                 hackTimer = 0f;
@@ -47,6 +48,7 @@ public class Button : MonoBehaviour
 
         if (isHacking)
             hackProgressBar.UpdateHp(hackTimer);
+
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
