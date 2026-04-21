@@ -136,7 +136,7 @@ public class EnemyBehavior : MonoBehaviour
         if (wallDetection.IsAgaisntWall || !groundDetection.CanContinue)
         {
             rb.linearVelocity = Vector2.zero;
-            currentState = EnemyState.Idle;
+            //currentState = EnemyState.Idle;
             return;
         }
 
@@ -206,7 +206,7 @@ public class EnemyBehavior : MonoBehaviour
 
     private void UpdateAnimations()
     {
-        animator.SetBool("IsWalking", currentState == EnemyState.Chasing || currentState == EnemyState.Idle && rb.linearVelocity.x != 0);
+        animator.SetBool("IsWalking", Mathf.Abs(rb.linearVelocity.x) > 0.1f && groundDetection.CanContinue);
         animator.SetBool("IsAttacking", currentState == EnemyState.Attacking);
     }
     private void GroundCheck()
