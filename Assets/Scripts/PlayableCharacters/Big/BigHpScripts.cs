@@ -7,12 +7,14 @@ public class BigHpScripts : MonoBehaviour
     [Header("Big's HP Settings")]
 
     public int MaxHp = 1000;
+    public HpBar hpBar;
     [SerializeField] private int currentHp;
     private Animator animator;
 
     private void Start()
     {
         currentHp = MaxHp;
+        hpBar.Setup(MaxHp, currentHp);
         animator = GetComponentInChildren<Animator>();
     }
 
@@ -37,6 +39,7 @@ public class BigHpScripts : MonoBehaviour
         if (currentHp <= 0) return;
 
         currentHp -= damage;
+        hpBar.UpdateHp(currentHp);
 
         if (currentHp <= 0)
         {
@@ -52,6 +55,7 @@ public class BigHpScripts : MonoBehaviour
     public void Heal(int amount)
     {
         currentHp += amount;
+        hpBar.UpdateHp(currentHp);
     }
 
 
@@ -65,6 +69,7 @@ public class BigHpScripts : MonoBehaviour
     public void Revive()
     {
         currentHp = MaxHp;
+        hpBar.UpdateHp(currentHp);
         animator.SetBool("IsDead", false);
         CharacterManager.Instance.IsBigDead = false; // FIX: was never resetting this
     }

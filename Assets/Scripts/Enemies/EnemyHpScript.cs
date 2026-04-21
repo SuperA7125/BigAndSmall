@@ -8,20 +8,24 @@ public class EnemyHpScript : MonoBehaviour
     [SerializeField] private int currentHp;
     [SerializeField] private Animator animator;
     private EnemyBehavior enemyBehavior;
-
+    public HpBar hpBar;
 
     private void Start()
     {
         currentHp = MaxHp;
         animator = GetComponentInChildren<Animator>();
         enemyBehavior = GetComponent<EnemyBehavior>();
+        hpBar.Setup(MaxHp, currentHp);
+        hpBar.gameObject.SetActive(false); // hidden by default
     }
+
 
     public void TakeDamage(int damage)
     {
         if (enemyBehavior.currentState == EnemyState.Dead) return;
-        Debug.Log($"TakeDamage called, animator: {animator}, currentHp: {currentHp}");
+        hpBar.gameObject.SetActive(true); // show on hit
         currentHp -= damage;
+        hpBar.UpdateHp(currentHp);
 
         if (currentHp <= 0)
         {
