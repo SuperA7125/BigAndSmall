@@ -93,14 +93,23 @@ public class SmallMovementScript : MonoBehaviour
         RaycastHit2D hit = Physics2D.BoxCast(
             transform.position,
             BoxSize,
-            transform.eulerAngles.z, // match Small's rotation
+            transform.eulerAngles.z,
             castDirection,
             RayLength,
             GroundLayer
         );
-        hasJumped = hit.collider == null;
-    }
 
+        if (hit.collider != null)
+        {
+            // check the hit normal matches gravity direction (is actually a floor not a wall)
+            float dot = Vector2.Dot(hit.normal, -castDirection);
+            hasJumped = dot < 0.5f; // only counts as ground if normal faces against gravity
+        }
+        else
+        {
+            hasJumped = true;
+        }
+    }
     // Called by RotatingRoom when rotation starts
     public void OnRoomRotationStart()
     {
