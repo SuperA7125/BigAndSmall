@@ -368,7 +368,7 @@ Rigidbody2D:
   m_Mass: 0.9
   m_LinearDamping: 0
   m_AngularDamping: 0.05
-  m_GravityScale: 1.3
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -512,12 +512,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SmallMovementScript
   moveSpeed: 6
   jumpForce: 7
+  gravityStrength: 15
   GroundLayer:
     serializedVersion: 2
     m_Bits: 264
   BoxSize: {x: 0.1, y: 0.2}
-  RayLength: 1
+  RayLength: 0.25
   RepairRate: 50
+  CurrentGravity: 0
+  IsInRoom: 0
+  isRoomRotating: 0
 --- !u!114 &7271879188868735036
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -658,6 +662,7 @@ MonoBehaviour:
   IsBigDead: 0
   IsSmallDead: 0
   IsHacking: 0
+  IsBigBusy: 0
   BigNeedsRepair: 0
 --- !u!1 &3532446805035512065
 GameObject:

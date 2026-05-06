@@ -51,6 +51,7 @@ public class BigMovementScript : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (CharacterManager.Instance.IsBigBusy) return;
         if (characterManager.activeCharacter == ActiveCharacter.Small) 
         {
             animator.SetBool("IsWalking", false); 
