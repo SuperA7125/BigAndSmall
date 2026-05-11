@@ -1,0 +1,470 @@
+fileFormatVersion: 2
+guid: 8c3d4d5a970e8f94b937f430d61f5ff3
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -4080638008003149798
+    second: Big_Punch_0
+  - first:
+      213: 4784997170238726129
+    second: Big_Punch_1
+  - first:
+      213: 2922695515275137407
+    second: Big_Punch_2
+  - first:
+      213: -6843958302058299839
+    second: Big_Punch_3
+  - first:
+      213: -763544494664698653
+    second: Big_Punch_4
+  - first:
+      213: 3446438370114002946
+    second: Big_Punch_5
+  - first:
+      213: -6227940446220404169
+    second: Big_Punch_6
+  - first:
+      213: -3645352883906180954
+    second: Big_Punch_7
+  - first:
+      213: -9135054835347517830
+    second: Big_Punch_8
+  - first:
+      213: 3099274758070323662
+    second: Big_Punch_9
+  - first:
+      213: -8523629886243074459
+    second: Big_Punch_10
+  - first:
+      213: 983498026329913437
+    second: Big_Punch_11
+  - first:
+      213: -6249423995134178365
+    second: Big_Punch_12
+  - first:
+      213: 1132991966163075375
+    second: Big_Punch_13
+  - first:
+      213: -9172630497395731553
+    second: Big_Punch_14
+  - first:
+      213: 3484028649341428384
+    second: Big_Punch_15
+  - first:
+      213: 5843255027149203781
+    second: Big_Punch_16
+  - first:
+      213: 1232073950078198311
+    second: Big_Punch_17
+  - first:
+      213: 3486147440421642208
+    second: Big_Punch_18
+  - first:
+      213: 1989490797003201894
+    second: Big_Punch_19
+  - first:
+      213: -3489421555334422847
+    second: Big_Punch_20
+  - first:
+      213: -5757533084266162299
+    second: Big_Punch_21
+  - first:
+      213: -6454829655045270867
+    second: Big_Punch_22
+  - first:
+      213: 2456183047651939947
+    second: Big_Punch_23
+  - first:
+      213: 2679796993009113934
+    second: Big_Punch_24
+  - first:
+      213: -1178271565312833286
+    second: Big_Punch_25
+  - first:
+      213: -6728860806776885837
+    second: Big_Punch_26
+  - first:
+      213: -7356147429599143860
+    second: Big_Punch_27
+  - first:
+      213: 796976984207996487
+    second: Big_Punch_28
+  - first:
+      213: 4974120660203715432
+    second: Big_Punch_29
+  - first:
+      213: 7553719236480045915
+    second: Big_Punch_30
+  - first:
+      213: 5567499852706456099
+    second: Big_Punch_31
+  - first:
+      213: 6763760538597238395
+    second: Big_Punch_32
+  - first:
+      213: 8205999821155628150
+    second: Big_Punch_33
+  - first:
+      213: -663000630519825618
+    second: Big_Punch_34
+  - first:
+      213: -3747693293492739980
+    second: Big_Punch_35
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 48
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WindowsStoreApps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Big_Punch_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 48
+        height: 48
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a10c3041a59ae57c0800000000000000
+      internalID: -4080638008003149798
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Big_Punch_1
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 0
+        width: 48
+        height: 48
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1ff14570399b76240800000000000000
+      internalID: 4784997170238726129
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Big_Punch_2
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 0
+        width: 48
+        height: 48
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f711a9606108f8820800000000000000
+      internalID: 2922695515275137407
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Big_Punch_3
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 0
+        width: 48
+        height: 48
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 14eba346f206501a0800000000000000
+      internalID: -6843958302058299839
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Big_Punch_4
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 0
+        width: 48
+        height: 48
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3e43e49d3585765f0800000000000000
+      internalID: -763544494664698653
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Big_Punch_5
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 0
+        width: 48
+        height: 48
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 200ebe6007534df20800000000000000
+      internalID: 3446438370114002946
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Big_Punch_6
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 0
+        width: 48
+        height: 48
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 73abeb44929e199a0800000000000000
+      internalID: -6227940446220404169
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Big_Punch_7
+      rect:
+        serializedVersion: 2
+        x: 336
+        y: 0
+        width: 48
+        height: 48
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6a883d1bdda196dc0800000000000000
+      internalID: -3645352883906180954
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Big_Punch_8
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 0
+        width: 48
+        height: 48
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a7e856fd604c93180800000000000000
+      internalID: -9135054835347517830
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Big_Punch_9
+      rect:
+        serializedVersion: 2
+        x: 432
+        y: 0
+        width: 48
+        height: 48
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ec9cd18c8f5d20b20800000000000000
+      internalID: 3099274758070323662
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":10.0,"y":1.0},"gridSpriteSize":{"x":48.0,"y":48.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":2,"keepEmptyRects":false,"isAlternate":false}'
+    nameFileIdTable:
+      Big_Punch_0: -4080638008003149798
+      Big_Punch_1: 4784997170238726129
+      Big_Punch_2: 2922695515275137407
+      Big_Punch_3: -6843958302058299839
+      Big_Punch_4: -763544494664698653
+      Big_Punch_5: 3446438370114002946
+      Big_Punch_6: -6227940446220404169
+      Big_Punch_7: -3645352883906180954
+      Big_Punch_8: -9135054835347517830
+      Big_Punch_9: 3099274758070323662
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

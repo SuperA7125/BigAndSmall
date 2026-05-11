@@ -4765,6 +4765,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Characters
       objectReference: {fileID: 0}
+    - target: {fileID: 3614687049899348372, guid: 6e2726015f6f6eb40ae7e4fc5db8df6d, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3614687049899348372, guid: 6e2726015f6f6eb40ae7e4fc5db8df6d, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7166966989302115590, guid: 6e2726015f6f6eb40ae7e4fc5db8df6d, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.0022448301
@@ -4803,6 +4811,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7166966989302115590, guid: 6e2726015f6f6eb40ae7e4fc5db8df6d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8821591830387020192, guid: 6e2726015f6f6eb40ae7e4fc5db8df6d, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8821591830387020192, guid: 6e2726015f6f6eb40ae7e4fc5db8df6d, type: 3}
+      propertyPath: m_LocalPosition.y
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -9900,7 +9916,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1546405442}
   - component: {fileID: 1546405441}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Grid
   m_TagString: Untagged
   m_Icon: {fileID: 0}

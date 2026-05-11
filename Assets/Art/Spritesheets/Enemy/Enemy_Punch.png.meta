@@ -1,0 +1,467 @@
+fileFormatVersion: 2
+guid: 1eb72b84a420e15428cdc1068233495b
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -4486999882689658941
+    second: Enemy_Punch_0
+  - first:
+      213: 5014430289505840823
+    second: Enemy_Punch_1
+  - first:
+      213: -7096269218821314470
+    second: Enemy_Punch_2
+  - first:
+      213: 4065699639856473780
+    second: Enemy_Punch_3
+  - first:
+      213: 447701429416959198
+    second: Enemy_Punch_4
+  - first:
+      213: 7301843770302276304
+    second: Enemy_Punch_5
+  - first:
+      213: 8696558140843971465
+    second: Enemy_Punch_6
+  - first:
+      213: 5172276927463603579
+    second: Enemy_Punch_7
+  - first:
+      213: 5105898123397178014
+    second: Enemy_Punch_8
+  - first:
+      213: -6409605580810338173
+    second: Enemy_Punch_9
+  - first:
+      213: -8961796234446336771
+    second: Enemy_Punch_10
+  - first:
+      213: 8655791190329947666
+    second: Enemy_Punch_11
+  - first:
+      213: 7392400731037980094
+    second: Enemy_Punch_12
+  - first:
+      213: -5514140357383950885
+    second: Enemy_Punch_13
+  - first:
+      213: -273911713010624350
+    second: Enemy_Punch_14
+  - first:
+      213: 5808813316107783713
+    second: Enemy_Punch_15
+  - first:
+      213: 6776986206310489465
+    second: Enemy_Punch_16
+  - first:
+      213: 224412869688247231
+    second: Enemy_Punch_17
+  - first:
+      213: 3698450028625344322
+    second: Enemy_Punch_18
+  - first:
+      213: 3340356834640202351
+    second: Enemy_Punch_19
+  - first:
+      213: -7788433712564182474
+    second: Enemy_Punch_20
+  - first:
+      213: 1709104486721133799
+    second: Enemy_Punch_21
+  - first:
+      213: 2451808774890266999
+    second: Enemy_Punch_22
+  - first:
+      213: -1928123487126419376
+    second: Enemy_Punch_23
+  - first:
+      213: -3940224899750744646
+    second: Enemy_Punch_24
+  - first:
+      213: -8522507565597978152
+    second: Enemy_Punch_25
+  - first:
+      213: -5361433886252158265
+    second: Enemy_Punch_26
+  - first:
+      213: 4225528795762435098
+    second: Enemy_Punch_27
+  - first:
+      213: -2897225283127258442
+    second: Enemy_Punch_28
+  - first:
+      213: -4985634848992895016
+    second: Enemy_Punch_29
+  - first:
+      213: 9071453240346502330
+    second: Enemy_Punch_30
+  - first:
+      213: 2267975330720460279
+    second: Enemy_Punch_31
+  - first:
+      213: 7630161545667896148
+    second: Enemy_Punch_32
+  - first:
+      213: 7315815029681582719
+    second: Enemy_Punch_33
+  - first:
+      213: 4233620172871619251
+    second: Enemy_Punch_34
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 48
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WindowsStoreApps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Enemy_Punch_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 48
+        height: 48
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3cf301d3169fab1c0800000000000000
+      internalID: -4486999882689658941
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemy_Punch_1
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 0
+        width: 48
+        height: 48
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7be64fcd7c5d69540800000000000000
+      internalID: 5014430289505840823
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemy_Punch_2
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 0
+        width: 48
+        height: 48
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a58ed9d3ebcf48d90800000000000000
+      internalID: -7096269218821314470
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemy_Punch_3
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 0
+        width: 48
+        height: 48
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4b6241d08444c6830800000000000000
+      internalID: 4065699639856473780
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemy_Punch_4
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 0
+        width: 48
+        height: 48
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: edc15d9f31e863600800000000000000
+      internalID: 447701429416959198
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemy_Punch_5
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 0
+        width: 48
+        height: 48
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0d22446e83c555560800000000000000
+      internalID: 7301843770302276304
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemy_Punch_6
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 0
+        width: 48
+        height: 48
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 98359818d8160b870800000000000000
+      internalID: 8696558140843971465
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemy_Punch_7
+      rect:
+        serializedVersion: 2
+        x: 336
+        y: 0
+        width: 48
+        height: 48
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b7dba6d267e97c740800000000000000
+      internalID: 5172276927463603579
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemy_Punch_8
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 0
+        width: 48
+        height: 48
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e922c608a4bcbd640800000000000000
+      internalID: 5105898123397178014
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemy_Punch_9
+      rect:
+        serializedVersion: 2
+        x: 432
+        y: 0
+        width: 48
+        height: 48
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 380407d0fa18c07a0800000000000000
+      internalID: -6409605580810338173
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: b273a53496ad4a648a7f85b1091c9243
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":10.0,"y":1.0},"gridSpriteSize":{"x":48.0,"y":48.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":2,"keepEmptyRects":false,"isAlternate":false}'
+    nameFileIdTable:
+      Enemy_Punch_0: -4486999882689658941
+      Enemy_Punch_1: 5014430289505840823
+      Enemy_Punch_2: -7096269218821314470
+      Enemy_Punch_3: 4065699639856473780
+      Enemy_Punch_4: 447701429416959198
+      Enemy_Punch_5: 7301843770302276304
+      Enemy_Punch_6: 8696558140843971465
+      Enemy_Punch_7: 5172276927463603579
+      Enemy_Punch_8: 5105898123397178014
+      Enemy_Punch_9: -6409605580810338173
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

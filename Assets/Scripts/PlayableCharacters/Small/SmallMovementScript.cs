@@ -5,56 +5,65 @@ public enum GravityDirection { Down, Left, Up, Right }
 
 public class SmallMovementScript : MonoBehaviour
 {
-    private CharacterManager characterManager;
-
-    [Header("Small's Movement Settings")]
+    [Header("Movement Settings")]
     [SerializeField] private float moveSpeed = 5f;
     [SerializeField] private float jumpForce = 5f;
     [SerializeField] private float gravityStrength = 20f;
-    private bool hasJumped = false;
-    private bool isRepairingBig = false;
+    public float JumpUpDuration = 0.2f;
 
+    [Header("Ground Check")]
     public LayerMask GroundLayer;
     public Vector2 BoxSize = new Vector2(0.1f, 0.2f);
     public float RayLength;
 
     [Header("Repair Settings")]
     public float RepairRate = 15f;
-    private bool isNearBig = false;
-    private BigHpScripts bigHp;
-    private float healAccumulator = 0f;
 
     [Header("Gravity Settings")]
     public GravityDirection CurrentGravity = GravityDirection.Down;
     public bool IsInRoom = false;
     public bool isRoomRotating = false;
 
-    public void SetInRoom(bool value) => IsInRoom = value;
+    // Private fields
+    private CharacterManager characterManager;
     private Rigidbody2D rb;
+    private Animator animator;
+    private SpriteRenderer spriteRenderer;
+    private BigHpScripts bigHp;
+
     private float horizontalInput;
+    private float jumpUpTimer = 0f;
+    private float healAccumulator = 0f;
+    private bool hasJumped = false;
+    private bool isRepairingBig = false;
+    private bool isNearBig = false;
+
+    // --- Unity Methods ---
 
     private void Awake()
     {
         characterManager = GetComponentInParent<CharacterManager>();
         rb = GetComponent<Rigidbody2D>();
-        rb.gravityScale = 0f; // disable default gravity
+        animator = GetComponent<Animator>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        rb.gravityScale = 0f;
     }
 
     private void Update()
     {
         horizontalInput = Input.GetAxis("Horizontal");
         if (characterManager.activeCharacter == ActiveCharacter.Big) return;
-        if (isRoomRotating) return; // block all input while room rotates
+        if (isRoomRotating) return;
 
         GroundCheck();
         Jump();
         HandleRepair();
+        UpdateAnimations();
     }
 
     private void FixedUpdate()
     {
         ApplyGravity();
-
         if (characterManager.activeCharacter == ActiveCharacter.Big ||
             characterManager.IsHacking ||
             isRepairingBig ||
@@ -63,16 +72,11 @@ public class SmallMovementScript : MonoBehaviour
         Move();
     }
 
-    private void ApplyGravity()
-    {
-        Vector2 gravityVector = GetGravityVector() * gravityStrength;
-        rb.AddForce(gravityVector, ForceMode2D.Force);
-    }
+    // --- Movement ---
 
     private void Move()
     {
         if (horizontalInput == 0) return;
-
         Vector2 moveDirection = GetMoveDirection() * (horizontalInput * moveSpeed * Time.deltaTime);
         transform.position += (Vector3)moveDirection;
     }
@@ -83,39 +87,61 @@ public class SmallMovementScript : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space) && !hasJumped)
         {
             hasJumped = true;
+            jumpUpTimer = JumpUpDuration;
             rb.AddForce(-GetGravityVector() * jumpForce, ForceMode2D.Impulse);
         }
     }
 
+    private void ApplyGravity()
+    {
+        rb.AddForce(GetGravityVector() * gravityStrength, ForceMode2D.Force);
+    }
+
     private void GroundCheck()
     {
-        Vector2 castDirection = GetGravityVector();
         RaycastHit2D hit = Physics2D.BoxCast(
-            transform.position,
-            BoxSize,
+            transform.position, BoxSize,
             transform.eulerAngles.z,
-            castDirection,
-            RayLength,
-            GroundLayer
+            GetGravityVector(), RayLength, GroundLayer
         );
 
         if (hit.collider != null)
         {
-            // check the hit normal matches gravity direction (is actually a floor not a wall)
-            float dot = Vector2.Dot(hit.normal, -castDirection);
-            hasJumped = dot < 0.5f; // only counts as ground if normal faces against gravity
+            float dot = Vector2.Dot(hit.normal, -GetGravityVector());
+            hasJumped = dot < 0.5f;
         }
         else
         {
             hasJumped = true;
         }
     }
-    // Called by RotatingRoom when rotation starts
+
+    // --- Animations ---
+
+    private void UpdateAnimations()
+    {
+        jumpUpTimer -= Time.deltaTime;
+        float moveVelocity = Vector2.Dot(rb.linearVelocity, GetMoveDirection());
+        float jumpVelocity = hasJumped && jumpUpTimer <= 0f
+            ? Vector2.Dot(rb.linearVelocity, -GetGravityVector())
+            : 1f;
+
+        animator.SetBool("IsWalking", !hasJumped && Mathf.Abs(horizontalInput) > 0.1f);
+        animator.SetBool("IsJumping", hasJumped);
+        animator.SetFloat("JumpVelocity", jumpVelocity);
+
+        spriteRenderer.flipX = horizontalInput < 0;
+    }
+
+    // --- Room Rotation ---
+
+    public void SetInRoom(bool value) => IsInRoom = value;
+
     public void OnRoomRotationStart()
     {
         isRoomRotating = true;
         rb.linearVelocity = Vector2.zero;
-        rb.bodyType = RigidbodyType2D.Kinematic; // freeze all physics
+        rb.bodyType = RigidbodyType2D.Kinematic;
     }
 
     public void OnRoomRotationEnd(GravityDirection newGravity)
@@ -128,11 +154,10 @@ public class SmallMovementScript : MonoBehaviour
 
     private IEnumerator RestorePhysics()
     {
-        yield return new WaitForFixedUpdate(); // wait one physics frame
+        yield return new WaitForFixedUpdate();
         rb.linearVelocity = Vector2.zero;
         rb.bodyType = RigidbodyType2D.Dynamic;
     }
-
 
     private void UpdateRotation()
     {
@@ -147,23 +172,7 @@ public class SmallMovementScript : MonoBehaviour
         transform.eulerAngles = new Vector3(0f, 0f, angle);
     }
 
-    private Vector2 GetGravityVector() => CurrentGravity switch
-    {
-        GravityDirection.Down => Vector2.down,
-        GravityDirection.Left => Vector2.left,
-        GravityDirection.Up => Vector2.up,
-        GravityDirection.Right => Vector2.right,
-        _ => Vector2.down
-    };
-
-    private Vector2 GetMoveDirection() => CurrentGravity switch
-    {
-        GravityDirection.Down => Vector2.right,
-        GravityDirection.Left => Vector2.down,  // was Vector2.up
-        GravityDirection.Up => Vector2.left,
-        GravityDirection.Right => Vector2.up,   // was Vector2.down
-        _ => Vector2.right
-    };
+    // --- Repair ---
 
     private void HandleRepair()
     {
@@ -205,12 +214,32 @@ public class SmallMovementScript : MonoBehaviour
         }
     }
 
+    // --- Helpers ---
+
+    private Vector2 GetGravityVector() => CurrentGravity switch
+    {
+        GravityDirection.Down => Vector2.down,
+        GravityDirection.Left => Vector2.left,
+        GravityDirection.Up => Vector2.up,
+        GravityDirection.Right => Vector2.right,
+        _ => Vector2.down
+    };
+
+    private Vector2 GetMoveDirection() => CurrentGravity switch
+    {
+        GravityDirection.Down => Vector2.right,
+        GravityDirection.Left => Vector2.down,
+        GravityDirection.Up => Vector2.left,
+        GravityDirection.Right => Vector2.up,
+        _ => Vector2.right
+    };
+
     private void OnDrawGizmos()
     {
-        Vector2 castDirection = GetGravityVector();
-        Vector2 castOrigin = (Vector2)transform.position + castDirection * RayLength;
-
         Gizmos.color = Color.green;
-        Gizmos.DrawWireCube(castOrigin, BoxSize);
+        Gizmos.DrawWireCube(
+            (Vector2)transform.position + GetGravityVector() * RayLength,
+            BoxSize
+        );
     }
 }
