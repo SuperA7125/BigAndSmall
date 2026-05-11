@@ -6,7 +6,7 @@ public class WallDetection : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Ground"))
+        if (other.CompareTag("Ground") || other.CompareTag("PushableObject"))
         {
             wallCount++;
             IsAgaisntWall = true;
@@ -15,7 +15,7 @@ public class WallDetection : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        if (other.CompareTag("Ground"))
+        if (other.CompareTag("Ground") || other.CompareTag("PushableObject"))
         {
             wallCount--;
             IsAgaisntWall = wallCount > 0;
