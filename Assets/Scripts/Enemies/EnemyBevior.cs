@@ -195,7 +195,7 @@ public class EnemyBehavior : MonoBehaviour
         {
             if (hit.CompareTag("Big"))
             {
-                hit.GetComponent<BigHpScripts>()?.TakeDamage(Damage);
+                hit.GetComponent<BigHpScripts>()?.TakeDamage(Damage , true);
             }
             else if (hit.CompareTag("Small"))
             {

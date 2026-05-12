@@ -18,7 +18,7 @@ public class Spikes : MonoBehaviour
             var bigHp = collision.GetComponent<BigHpScripts>();
             if (bigHp != null)
             {
-                bigHp.TakeDamage(Damage);
+                bigHp.TakeDamage(Damage , false);
             }
         }
     }

@@ -34,7 +34,7 @@ public class BigHpScripts : MonoBehaviour
             CharacterManager.Instance.BigNeedsRepair = true;
         }
     }
-    public void TakeDamage(int damage)
+    public void TakeDamage(int damage , bool isPlayingHitAnim)
     {
         if (currentHp <= 0) return;
 
@@ -48,8 +48,11 @@ public class BigHpScripts : MonoBehaviour
         }
 
         animator.ResetTrigger("Attack"); // reset any pending attack
-        animator.SetTrigger("GotHit");
-        StartCoroutine(HitStop());
+        if (isPlayingHitAnim)
+        {
+            animator.SetTrigger("GotHit");
+            StartCoroutine(HitStop());
+        }
     }
 
     public void Heal(int amount)

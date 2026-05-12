@@ -35,7 +35,6 @@ public class CoopLift : MonoBehaviour
         liftCollider = GetComponent<Collider2D>();
 
         // Start hidden and disabled
-        spriteRenderer.enabled = false;
         liftCollider.enabled = false;
     }
 
@@ -119,7 +118,7 @@ public class CoopLift : MonoBehaviour
     public void SetActive()
     {
         isActive = true;
-        spriteRenderer.enabled = true;
+        //spriteRenderer.enabled = true;
         liftCollider.enabled = true;
     }
     public void SetInactive() => isActive = false;
