@@ -234,8 +234,6 @@ GameObject:
   - component: {fileID: 3614687049899348372}
   - component: {fileID: 3447587659473619174}
   - component: {fileID: 3725496907787685985}
-  - component: {fileID: 3554796087972607903}
-  - component: {fileID: 5884283732064397440}
   - component: {fileID: 1576295218419576644}
   - component: {fileID: 7271879188868735036}
   - component: {fileID: 8769867186119305166}
@@ -336,78 +334,6 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 0.19163823, y: 0.12904334}
   m_EdgeRadius: 0
---- !u!58 &3554796087972607903
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2052395639193119780}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_CompositeOperation: 0
-  m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
-  m_Radius: 0.5
---- !u!58 &5884283732064397440
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2052395639193119780}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_CompositeOperation: 0
-  m_CompositeOrder: 0
-  m_Offset: {x: 0.0029603243, y: 0}
-  m_Radius: 0.5029603
 --- !u!114 &1576295218419576644
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -936,11 +862,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70e45232cf85d074f877acf0a3771c40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BigMovementScript
-  damage: 25
+  damage: 50
   pushMask:
     serializedVersion: 2
     m_Bits: 256
-  moveSpeed: 2
+  moveSpeed: 2.5
   rayLength: 0.75
   AttackPoint: {fileID: 1121919952362351654}
   attackRadius: 0.5

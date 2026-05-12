@@ -16047,33 +16047,17 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2073826448235136138, guid: 6e2726015f6f6eb40ae7e4fc5db8df6d, type: 3}
-      propertyPath: damage
-      value: 50
-      objectReference: {fileID: 0}
-    - target: {fileID: 2073826448235136138, guid: 6e2726015f6f6eb40ae7e4fc5db8df6d, type: 3}
-      propertyPath: moveSpeed
-      value: 2.5
-      objectReference: {fileID: 0}
     - target: {fileID: 2527737183396537593, guid: 6e2726015f6f6eb40ae7e4fc5db8df6d, type: 3}
       propertyPath: m_Name
       value: Characters
       objectReference: {fileID: 0}
-    - target: {fileID: 3554796087972607903, guid: 6e2726015f6f6eb40ae7e4fc5db8df6d, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5884283732064397440, guid: 6e2726015f6f6eb40ae7e4fc5db8df6d, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 7166966989302115590, guid: 6e2726015f6f6eb40ae7e4fc5db8df6d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3.99
+      value: 1.437
       objectReference: {fileID: 0}
     - target: {fileID: 7166966989302115590, guid: 6e2726015f6f6eb40ae7e4fc5db8df6d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 6.04
+      value: -2.282
       objectReference: {fileID: 0}
     - target: {fileID: 7166966989302115590, guid: 6e2726015f6f6eb40ae7e4fc5db8df6d, type: 3}
       propertyPath: m_LocalPosition.z
@@ -28951,7 +28935,7 @@ GameObject:
   m_Component:
   - component: {fileID: 711277216}
   - component: {fileID: 711277215}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: FirstLevelGrid
   m_TagString: Untagged
   m_Icon: {fileID: 0}
