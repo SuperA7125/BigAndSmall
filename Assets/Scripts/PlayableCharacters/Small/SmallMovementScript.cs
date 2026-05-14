@@ -56,8 +56,11 @@ public class SmallMovementScript : MonoBehaviour
         if (isRoomRotating) return;
 
         GroundCheck();
-        Jump();
-        HandleRepair();
+        if (!CharacterManager.Instance.IsHacking) 
+       { 
+            Jump();
+            HandleRepair();
+        }
         UpdateAnimations();
     }
 
@@ -120,6 +123,12 @@ public class SmallMovementScript : MonoBehaviour
 
     private void UpdateAnimations()
     {
+        if ( characterManager.IsHacking)
+        {
+            animator.SetBool("IsWalking", false);
+            animator.SetBool("IsJumping", false);
+            return;
+        }
         jumpUpTimer -= Time.deltaTime;
         float moveVelocity = Vector2.Dot(rb.linearVelocity, GetMoveDirection());
         float jumpVelocity = hasJumped && jumpUpTimer <= 0f

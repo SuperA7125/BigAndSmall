@@ -13,13 +13,13 @@ public class Spikes : MonoBehaviour
                 smallHp.TakeDamage(Damage); 
             }
         }
-        else if (collision.CompareTag("Big"))
-        {
-            var bigHp = collision.GetComponent<BigHpScripts>();
-            if (bigHp != null)
-            {
-                bigHp.TakeDamage(Damage , false);
-            }
-        }
+        //else if (collision.CompareTag("Big"))
+        //{
+        //    var bigHp = collision.GetComponent<BigHpScripts>();
+        //    if (bigHp != null)
+        //    {
+        //        bigHp.TakeDamage(Damage , false);
+        //    }
+        //}
     }
 }
