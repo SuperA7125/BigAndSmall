@@ -15,6 +15,8 @@ public class SmallMovementScript : MonoBehaviour
     public LayerMask GroundLayer;
     public Vector2 BoxSize = new Vector2(0.1f, 0.2f);
     public float RayLength;
+    private float coyoteTime = 0.15f;
+    private float coyoteTimer = 0f;
 
     [Header("Repair Settings")]
     public float RepairRate = 15f;
@@ -52,16 +54,47 @@ public class SmallMovementScript : MonoBehaviour
     private void Update()
     {
         horizontalInput = Input.GetAxis("Horizontal");
-        if (characterManager.activeCharacter == ActiveCharacter.Big) return;
-        if (isRoomRotating) return;
+
+        if (characterManager.activeCharacter == ActiveCharacter.Big || isRoomRotating)
+        {
+            ResetAnimations(); // always reset when inactive
+            return;
+        }
 
         GroundCheck();
-        if (!CharacterManager.Instance.IsHacking) 
-       { 
+        if (!CharacterManager.Instance.IsHacking)
+        {
             Jump();
             HandleRepair();
         }
         UpdateAnimations();
+    }
+
+    private void ResetAnimations()
+    {
+        animator.SetBool("IsWalking", false);
+        animator.SetBool("IsJumping", false);
+        animator.SetFloat("JumpVelocity", 0f);
+    }
+
+    private void UpdateAnimations()
+    {
+        if (characterManager.IsHacking)
+        {
+            ResetAnimations();
+            return;
+        }
+
+        jumpUpTimer -= Time.deltaTime;
+        float jumpVelocity = hasJumped && jumpUpTimer <= 0f
+            ? Vector2.Dot(rb.linearVelocity, -GetGravityVector())
+            : 1f;
+
+        animator.SetBool("IsWalking", !hasJumped && Mathf.Abs(horizontalInput) > 0.1f);
+        animator.SetBool("IsJumping", hasJumped);
+        animator.SetFloat("JumpVelocity", jumpVelocity);
+
+        spriteRenderer.flipX = horizontalInput < 0;
     }
 
     private void FixedUpdate()
@@ -84,22 +117,6 @@ public class SmallMovementScript : MonoBehaviour
         transform.position += (Vector3)moveDirection;
     }
 
-    private void Jump()
-    {
-        if (characterManager.IsHacking || isRepairingBig) return;
-        if (Input.GetKeyDown(KeyCode.Space) && !hasJumped)
-        {
-            hasJumped = true;
-            jumpUpTimer = JumpUpDuration;
-            rb.AddForce(-GetGravityVector() * jumpForce, ForceMode2D.Impulse);
-        }
-    }
-
-    private void ApplyGravity()
-    {
-        rb.AddForce(GetGravityVector() * gravityStrength, ForceMode2D.Force);
-    }
-
     private void GroundCheck()
     {
         RaycastHit2D hit = Physics2D.BoxCast(
@@ -111,36 +128,43 @@ public class SmallMovementScript : MonoBehaviour
         if (hit.collider != null)
         {
             float dot = Vector2.Dot(hit.normal, -GetGravityVector());
-            hasJumped = dot < 0.5f;
+            bool grounded = dot >= 0.5f;
+            if (grounded)
+            {
+                hasJumped = false;
+                coyoteTimer = coyoteTime; // reset coyote timer when grounded
+            }
         }
         else
         {
-            hasJumped = true;
+            coyoteTimer -= Time.deltaTime; // count down when in air
+            if (coyoteTimer <= 0)
+                hasJumped = true;
         }
     }
+
+    private void Jump()
+    {
+        if (characterManager.IsHacking || isRepairingBig) return;
+        if (Input.GetKeyDown(KeyCode.Space) && (!hasJumped || coyoteTimer > 0f))
+        {
+            hasJumped = true;
+            coyoteTimer = 0f; // consume coyote time
+            jumpUpTimer = JumpUpDuration;
+            rb.AddForce(-GetGravityVector() * jumpForce, ForceMode2D.Impulse);
+        }
+    }
+
+    private void ApplyGravity()
+    {
+        rb.AddForce(GetGravityVector() * gravityStrength, ForceMode2D.Force);
+    }
+
+ 
 
     // --- Animations ---
 
-    private void UpdateAnimations()
-    {
-        if ( characterManager.IsHacking)
-        {
-            animator.SetBool("IsWalking", false);
-            animator.SetBool("IsJumping", false);
-            return;
-        }
-        jumpUpTimer -= Time.deltaTime;
-        float moveVelocity = Vector2.Dot(rb.linearVelocity, GetMoveDirection());
-        float jumpVelocity = hasJumped && jumpUpTimer <= 0f
-            ? Vector2.Dot(rb.linearVelocity, -GetGravityVector())
-            : 1f;
-
-        animator.SetBool("IsWalking", !hasJumped && Mathf.Abs(horizontalInput) > 0.1f);
-        animator.SetBool("IsJumping", hasJumped);
-        animator.SetFloat("JumpVelocity", jumpVelocity);
-
-        spriteRenderer.flipX = horizontalInput < 0;
-    }
+    
 
     // --- Room Rotation ---
 
