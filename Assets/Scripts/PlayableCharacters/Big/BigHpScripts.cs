@@ -66,7 +66,7 @@ public class BigHpScripts : MonoBehaviour
     {
         Debug.Log("Die called!");
         animator.SetBool("IsDead", true);
-        CharacterManager.Instance.SetBigDead();
+
     }
 
     public void Revive()

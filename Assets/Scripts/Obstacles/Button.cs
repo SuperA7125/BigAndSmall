@@ -15,12 +15,14 @@ public class Button : MonoBehaviour
     [SerializeField] private bool isHacked = false;
     [SerializeField] private float hackTimer = 0f;
 
+    private Animator animator;
     void Awake()
     {
         SetDoorsInactive();
         DeactivateLifts();
         DeactivateCoopLifts(); // add this
         hackProgressBar.gameObject.SetActive(false);
+        animator = GetComponent<Animator>();
     }
 
     void Update()
@@ -39,6 +41,8 @@ public class Button : MonoBehaviour
                 isHacked = true;
                 canHack = false; // ADD THIS
                 hackProgressBar.gameObject.SetActive(false);
+                animator.SetBool("IsSmallNear", false); // stay open forever
+                animator.SetBool("IsHacked", true);
                 isHacking = false;
                 CharacterManager.Instance.IsHacking = false;
                 hackTimer = 0f;
@@ -55,15 +59,20 @@ public class Button : MonoBehaviour
     private void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.CompareTag("Small") && !isHacked && CharacterManager.Instance.activeCharacter == ActiveCharacter.Small)
+        {
             canHack = true;
+            animator.SetBool("IsSmallNear", true);
+        }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.CompareTag("Small"))
+        {
             canHack = false;
+            animator.SetBool("IsSmallNear", false);
+        }
     }
-
     void StartHacking()
     {
         isHacking = true;

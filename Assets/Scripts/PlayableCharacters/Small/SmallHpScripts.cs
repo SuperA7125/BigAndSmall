@@ -25,4 +25,9 @@ public class SmallHpScripts : MonoBehaviour
     {
         CharacterManager.Instance.SetSmallDead();
     }
+
+    public void ResetHP()
+    {
+        currentHp = MaxHp;
+    }
 }

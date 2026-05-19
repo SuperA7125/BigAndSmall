@@ -38,7 +38,7 @@ public class CharacterManager : MonoBehaviour
 
         if (IsSmallDead)
         {
-            EndGame();
+            RespawnSmall();
         }
     }
 
@@ -57,10 +57,22 @@ public class CharacterManager : MonoBehaviour
             }
     }
 
-    public void SetBigDead()
+    private bool isRespawning = false;
+
+    private void RespawnSmall()
     {
-        IsBigDead = true;
-        activeCharacter = ActiveCharacter.Small;
+        if (isRespawning) return;
+
+        isRespawning = true;
+
+        Invoke(nameof(PerformRespawn), 0.1f);
+    }
+
+    private void PerformRespawn()
+    {
+        CheckpointManager.Instance.RespawnSmall();
+
+        isRespawning = false;
     }
     public void SetSmallDead() 
     {
