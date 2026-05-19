@@ -27,9 +27,7 @@ public class Button : MonoBehaviour
 
     void Update()
     {
-        if (CharacterManager.Instance.activeCharacter == ActiveCharacter.Big)
-            canHack = false;
-
+  
         if (canHack && !isHacking && Input.GetKeyDown(KeyCode.E))
             StartHacking();
 
@@ -41,7 +39,8 @@ public class Button : MonoBehaviour
                 isHacked = true;
                 canHack = false; // ADD THIS
                 hackProgressBar.gameObject.SetActive(false);
-                animator.SetBool("IsSmallNear", false); // stay open forever
+                animator.SetBool("IsHacking", false);
+                animator.SetBool("IsSmallNear", false); 
                 animator.SetBool("IsHacked", true);
                 isHacking = false;
                 CharacterManager.Instance.IsHacking = false;
@@ -76,6 +75,7 @@ public class Button : MonoBehaviour
     void StartHacking()
     {
         isHacking = true;
+        animator.SetBool("IsHacking", true);
         CharacterManager.Instance.IsHacking = true;
         hackTimer = hackDuration;
         hackProgressBar.Setup(hackDuration, hackDuration); // max = hackDuration, current = full

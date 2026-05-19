@@ -9,7 +9,6 @@ public class Valve : MonoBehaviour
 
     private void Update()
     {
-        if (CharacterManager.Instance.activeCharacter == ActiveCharacter.Small) return;
         if (canUse && Input.GetKeyDown(KeyCode.E) && !connectedRoom.IsRotating)
         {
             connectedRoom.Rotate();
@@ -42,13 +41,13 @@ public class Valve : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Big"))
+        if (other.CompareTag("Small"))
             canUse = true;
     }
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        if (other.CompareTag("Big"))
+        if (other.CompareTag("Small"))
             canUse = false;
     }
 }

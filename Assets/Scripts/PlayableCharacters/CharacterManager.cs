@@ -65,7 +65,7 @@ public class CharacterManager : MonoBehaviour
 
         isRespawning = true;
 
-        Invoke(nameof(PerformRespawn), 0.1f);
+        PerformRespawn();
     }
 
     private void PerformRespawn()

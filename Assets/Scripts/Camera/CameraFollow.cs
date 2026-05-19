@@ -15,7 +15,6 @@ public class CameraFollow : MonoBehaviour
     private void Start()
     {
         characterManager = CharacterManager.Instance;
-        bigTransform = GameObject.FindWithTag("Big").transform;
         smallTransform = GameObject.FindWithTag("Small").transform;
         small = smallTransform.GetComponent<SmallMovementScript>();
     }
