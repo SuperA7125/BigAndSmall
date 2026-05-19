@@ -22,30 +22,44 @@ public class CameraFollow : MonoBehaviour
     private void FixedUpdate()
     {
         target = characterManager.activeCharacter == ActiveCharacter.Big ? bigTransform : smallTransform;
+
         if (target == null) return;
 
-        Vector3 desiredPosition = target.position + Offset;
+        // Rotate offset with player
+        Vector3 rotatedOffset = target.rotation * Offset;
+        Vector3 desiredPosition = target.position + rotatedOffset;
+
         transform.position = Vector3.Lerp(transform.position, desiredPosition, SmoothSpeed);
 
         // rotate camera to match Small's gravity when Small is active
         if (characterManager.activeCharacter == ActiveCharacter.Small)
         {
-            float targetCameraAngle = small.CurrentGravity switch
+            if (small.isRoomRotating && small.CurrentRoom != null)
             {
-                GravityDirection.Down => 0f,
-                GravityDirection.Right => 90f,
-                GravityDirection.Up => 180f,
-                GravityDirection.Left => 270f,
-                _ => 0f
-            };
-            transform.eulerAngles = new Vector3(0f, 0f,
-                Mathf.LerpAngle(transform.eulerAngles.z, targetCameraAngle, SmoothSpeed));
-        }
-        else
-        {
-            // reset camera rotation when playing as Big
-            transform.eulerAngles = new Vector3(0f, 0f,
-                Mathf.LerpAngle(transform.eulerAngles.z, 0f, SmoothSpeed));
+                // follow room rotation live
+                transform.rotation = Quaternion.Lerp(
+                    transform.rotation,
+                    small.CurrentRoom.transform.rotation,
+                    SmoothSpeed
+                );
+            }
+            else
+            {
+                float targetCameraAngle = small.CurrentGravity switch
+                {
+                    GravityDirection.Down => 0f,
+                    GravityDirection.Right => 90f,
+                    GravityDirection.Up => 180f,
+                    GravityDirection.Left => 270f,
+                    _ => 0f
+                };
+
+                transform.rotation = Quaternion.Lerp(
+                    transform.rotation,
+                    Quaternion.Euler(0f, 0f, targetCameraAngle),
+                    SmoothSpeed
+                );
+            }
         }
     }
 }

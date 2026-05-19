@@ -11,6 +11,7 @@ public class SmallMovementScript : MonoBehaviour
     [SerializeField] private float gravityStrength = 20f;
     public float JumpUpDuration = 0.2f;
 
+    public RotatingRoom CurrentRoom;
     [Header("Ground Check")]
     public LayerMask GroundLayer;
     public Vector2 BoxSize = new Vector2(0.1f, 0.2f);

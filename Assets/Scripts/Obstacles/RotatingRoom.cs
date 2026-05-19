@@ -77,12 +77,18 @@ public class RotatingRoom : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Small"))
+        {
             small.SetInRoom(true);
+            small.CurrentRoom = this;
+        }
     }
 
     private void OnTriggerExit2D(Collider2D other)
     {
         if (other.CompareTag("Small"))
+        {
             small.SetInRoom(false);
+            small.CurrentRoom = null;
+        }
     }
 }
