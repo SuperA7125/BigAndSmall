@@ -6,60 +6,50 @@ public class CameraFollow : MonoBehaviour
     public float SmoothSpeed = 0.125f;
     public Vector3 Offset = new Vector3(0f, 0f, -10f);
 
-    private CharacterManager characterManager;
-    private Transform target;
-    private Transform bigTransform;
     private Transform smallTransform;
     private SmallMovementScript small;
 
     private void Start()
     {
-        characterManager = CharacterManager.Instance;
         smallTransform = GameObject.FindWithTag("Small").transform;
         small = smallTransform.GetComponent<SmallMovementScript>();
     }
 
     private void FixedUpdate()
     {
-        target = characterManager.activeCharacter == ActiveCharacter.Big ? bigTransform : smallTransform;
+        if (smallTransform == null) return;
 
-        if (target == null) return;
+        Vector3 rotatedOffset = smallTransform.rotation * Offset;
+        transform.position = Vector3.Lerp(
+            transform.position,
+            smallTransform.position + rotatedOffset,
+            SmoothSpeed
+        );
 
-        // Rotate offset with player
-        Vector3 rotatedOffset = target.rotation * Offset;
-        Vector3 desiredPosition = target.position + rotatedOffset;
-
-        transform.position = Vector3.Lerp(transform.position, desiredPosition, SmoothSpeed);
-
-        // rotate camera to match Small's gravity when Small is active
-        if (characterManager.activeCharacter == ActiveCharacter.Small)
+        // follow room live while rotating, otherwise match gravity
+        if (small.isRoomRotating && small.CurrentRoom != null)
         {
-            if (small.isRoomRotating && small.CurrentRoom != null)
+            transform.rotation = Quaternion.Lerp(
+                transform.rotation,
+                small.CurrentRoom.transform.rotation,
+                SmoothSpeed
+            );
+        }
+        else
+        {
+            float targetAngle = small.CurrentGravity switch
             {
-                // follow room rotation live
-                transform.rotation = Quaternion.Lerp(
-                    transform.rotation,
-                    small.CurrentRoom.transform.rotation,
-                    SmoothSpeed
-                );
-            }
-            else
-            {
-                float targetCameraAngle = small.CurrentGravity switch
-                {
-                    GravityDirection.Down => 0f,
-                    GravityDirection.Right => 90f,
-                    GravityDirection.Up => 180f,
-                    GravityDirection.Left => 270f,
-                    _ => 0f
-                };
-
-                transform.rotation = Quaternion.Lerp(
-                    transform.rotation,
-                    Quaternion.Euler(0f, 0f, targetCameraAngle),
-                    SmoothSpeed
-                );
-            }
+                GravityDirection.Down => 0f,
+                GravityDirection.Right => 90f,
+                GravityDirection.Up => 180f,
+                GravityDirection.Left => 270f,
+                _ => 0f
+            };
+            transform.rotation = Quaternion.Lerp(
+                transform.rotation,
+                Quaternion.Euler(0f, 0f, targetAngle),
+                SmoothSpeed
+            );
         }
     }
 }

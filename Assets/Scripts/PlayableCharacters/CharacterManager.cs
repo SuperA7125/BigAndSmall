@@ -1,6 +1,5 @@
-using System;
+using System.Collections;
 using UnityEngine;
-
 
 public class CharacterManager : MonoBehaviour
 {
@@ -12,10 +11,10 @@ public class CharacterManager : MonoBehaviour
     public bool IsSmallDead = false;
 
     public bool IsHacking = false;
-
     public bool IsBigBusy = false;
-
     public bool BigNeedsRepair = false;
+
+    private bool isRespawning = false;
 
     private void Awake()
     {
@@ -29,59 +28,45 @@ public class CharacterManager : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.F))
-        {
             ChangeCharacter();
-        }
 
-        if (IsSmallDead)
+        if (IsSmallDead && !isRespawning)
         {
-            RespawnSmall();
+            isRespawning = true;
+            StartCoroutine(RespawnCoroutine());
         }
     }
 
-    
+    private IEnumerator RespawnCoroutine()
+    {
+        yield return new WaitForSeconds(1.2f);
+
+        CheckpointManager.Instance.RespawnSmall();
+    }
 
     private void ChangeCharacter()
     {
-        if (IsBigDead || IsSmallDead) { return; }
+        if (IsBigDead || IsSmallDead)
+            return;
+
         if (activeCharacter == ActiveCharacter.Small)
-            {
-                activeCharacter = ActiveCharacter.Big;
-            }
-            else
-            {
-                activeCharacter = ActiveCharacter.Small;
-            }
+            activeCharacter = ActiveCharacter.Big;
+        else
+            activeCharacter = ActiveCharacter.Small;
     }
 
-    private bool isRespawning = false;
-
-    private void RespawnSmall()
-    {
-        if (isRespawning) return;
-
-        isRespawning = true;
-
-        PerformRespawn();
-    }
-
-    private void PerformRespawn()
-    {
-        CheckpointManager.Instance.RespawnSmall();
-
-        isRespawning = false;
-    }
-    public void SetSmallDead() 
+    public void SetSmallDead()
     {
         IsSmallDead = true;
     }
 
-    private void EndGame()
-    {
-        Time.timeScale = 0f;
+    public void FinishRespawn()
+    { 
+        isRespawning = false;
     }
 }
 

@@ -7,14 +7,18 @@ public class RotatingRoom : MonoBehaviour
     public bool IsRotating = false;
     public HpBar rotationProgressBar;
 
+    [Header("Starting Rotation")]
+    public float StartingRotation = 0f;
+
     private float targetAngle;
     private float currentAngle;
     private SmallMovementScript small;
 
     private void Start()
     {
-        currentAngle = transform.eulerAngles.z;
-        targetAngle = currentAngle;
+        transform.eulerAngles = new Vector3(0f, 0f, StartingRotation);
+        currentAngle = StartingRotation;
+        targetAngle = StartingRotation;
         rotationProgressBar.gameObject.SetActive(false);
         small = GameObject.FindWithTag("Small").GetComponent<SmallMovementScript>();
     }
@@ -29,7 +33,7 @@ public class RotatingRoom : MonoBehaviour
         transform.eulerAngles = new Vector3(0f, 0f, currentAngle);
 
         if (small != null && small.IsInRoom)
-            small.transform.RotateAround(transform.position, Vector3.forward, angleDelta); // remove the minus
+            small.transform.RotateAround(transform.position, Vector3.forward, angleDelta);
 
         float progress = 1f - Mathf.Abs(targetAngle - currentAngle) / 90f;
         rotationProgressBar.UpdateHp(progress * 100f);
@@ -37,13 +41,12 @@ public class RotatingRoom : MonoBehaviour
         if (Mathf.Approximately(currentAngle, targetAngle))
         {
             IsRotating = false;
-            CharacterManager.Instance.IsBigBusy = false;
             rotationProgressBar.gameObject.SetActive(false);
 
             if (small != null && small.IsInRoom)
                 small.OnRoomRotationEnd(NextGravity(small.CurrentGravity));
             else if (small != null)
-                small.isRoomRotating = false; // always unblock even if outside
+                small.isRoomRotating = false;
         }
     }
 
@@ -52,17 +55,15 @@ public class RotatingRoom : MonoBehaviour
         targetAngle -= 90f;
         IsRotating = true;
 
-        // always block Small's movement during rotation
         if (small != null)
         {
-            small.isRoomRotating = true; // always set regardless of IsInRoom
+            small.isRoomRotating = true;
             if (small.IsInRoom)
-                small.OnRoomRotationStart(); // only freeze physics if inside
+                small.OnRoomRotationStart();
         }
 
         rotationProgressBar.Setup(100f, 0f);
         rotationProgressBar.gameObject.SetActive(true);
-        CharacterManager.Instance.IsBigBusy = true;
     }
 
     private GravityDirection NextGravity(GravityDirection current) => current switch
@@ -79,7 +80,7 @@ public class RotatingRoom : MonoBehaviour
         if (other.CompareTag("Small"))
         {
             small.SetInRoom(true);
-            small.CurrentRoom = this;
+            small.CurrentRoom = this; // add back
         }
     }
 
@@ -88,7 +89,14 @@ public class RotatingRoom : MonoBehaviour
         if (other.CompareTag("Small"))
         {
             small.SetInRoom(false);
-            small.CurrentRoom = null;
+            small.CurrentRoom = null; // add back
         }
+    }
+
+    public void ResetToStart()
+    {
+        targetAngle = StartingRotation;
+        IsRotating = true;
+        // don't block small or show progress bar, this is a death reset
     }
 }

@@ -46,5 +46,8 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: platfrom
+    uniqueID: 1396749601
+    locked: 0
   m_RenderingLayers:
   - Default

@@ -11,16 +11,10 @@ public class SmallMovementScript : MonoBehaviour
     [SerializeField] private float gravityStrength = 20f;
     public float JumpUpDuration = 0.2f;
 
-    public RotatingRoom CurrentRoom;
     [Header("Ground Check")]
     public LayerMask GroundLayer;
     public Vector2 BoxSize = new Vector2(0.1f, 0.2f);
     public float RayLength;
-    private float coyoteTime = 0.15f;
-    private float coyoteTimer = 0f;
-
-    [Header("Repair Settings")]
-    public float RepairRate = 15f;
 
     [Header("Gravity Settings")]
     public GravityDirection CurrentGravity = GravityDirection.Down;
@@ -29,18 +23,17 @@ public class SmallMovementScript : MonoBehaviour
 
     // Private fields
     private CharacterManager characterManager;
-    private Rigidbody2D rb;
+    public Rigidbody2D rb;
     private Animator animator;
     private SpriteRenderer spriteRenderer;
-    private BigHpScripts bigHp;
 
     private float horizontalInput;
     private float jumpUpTimer = 0f;
-    private float healAccumulator = 0f;
+    private float coyoteTime = 0.15f;
+    private float coyoteTimer = 0f;
     private bool hasJumped = false;
-    private bool isRepairingBig = false;
-    private bool isNearBig = false;
-
+    public RotatingRoom CurrentRoom; // add this back
+    public bool isRespawning = false;
     // --- Unity Methods ---
 
     private void Awake()
@@ -56,30 +49,99 @@ public class SmallMovementScript : MonoBehaviour
     {
         horizontalInput = Input.GetAxis("Horizontal");
 
-        if (characterManager.activeCharacter == ActiveCharacter.Big || isRoomRotating)
+        if (isRoomRotating)
         {
-            ResetAnimations(); // always reset when inactive
+            ResetAnimations();
+            return;
+        }
+
+        if (isRespawning)
+        {
             return;
         }
 
         GroundCheck();
-        if (!CharacterManager.Instance.IsHacking)
-        {
+        if (!characterManager.IsHacking)
             Jump();
-            HandleRepair();
-        }
+
         UpdateAnimations();
     }
+
+    private void FixedUpdate()
+    {
+        if (isRoomRotating || isRespawning) return; // add isRespawning
+        ApplyGravity();
+        if (characterManager.IsHacking) return;
+        Move();
+    }
+
+
+
+
+    // --- Movement ---
+
+    private void Move()
+    {
+        if (horizontalInput == 0) return;
+        Vector2 moveDirection = GetMoveDirection() * (horizontalInput * moveSpeed);
+        Vector2 gravityVelocity = GetGravityVector() * Vector2.Dot(rb.linearVelocity, GetGravityVector());
+        rb.linearVelocity = moveDirection + gravityVelocity;
+    }
+
+    private void Jump()
+    {
+        if (Input.GetKeyDown(KeyCode.Space) && (!hasJumped || coyoteTimer > 0f))
+        {
+            hasJumped = true;
+            coyoteTimer = 0f;
+            jumpUpTimer = JumpUpDuration;
+            rb.AddForce(-GetGravityVector() * jumpForce, ForceMode2D.Impulse);
+        }
+    }
+
+    private void ApplyGravity()
+    {
+        rb.AddForce(GetGravityVector() * gravityStrength, ForceMode2D.Force);
+    }
+
+    private void GroundCheck()
+    {
+        RaycastHit2D hit = Physics2D.BoxCast(
+            transform.position, BoxSize,
+            transform.eulerAngles.z,
+            GetGravityVector(), RayLength, GroundLayer
+        );
+
+        if (hit.collider != null)
+        {
+            float dot = Vector2.Dot(hit.normal, -GetGravityVector());
+            if (dot >= 0.5f)
+            {
+                hasJumped = false;
+                coyoteTimer = coyoteTime;
+            }
+        }
+        else
+        {
+            coyoteTimer -= Time.deltaTime;
+            if (coyoteTimer <= 0)
+                hasJumped = true;
+        }
+    }
+
+    // --- Animations ---
 
     private void ResetAnimations()
     {
         animator.SetBool("IsWalking", false);
         animator.SetBool("IsJumping", false);
         animator.SetFloat("JumpVelocity", 0f);
+    
     }
 
     private void UpdateAnimations()
     {
+        animator.SetBool("IsDead", characterManager.IsSmallDead);
         if (characterManager.IsHacking)
         {
             ResetAnimations();
@@ -97,75 +159,6 @@ public class SmallMovementScript : MonoBehaviour
 
         spriteRenderer.flipX = horizontalInput < 0;
     }
-
-    private void FixedUpdate()
-    {
-        ApplyGravity();
-        if (characterManager.activeCharacter == ActiveCharacter.Big ||
-            characterManager.IsHacking ||
-            isRepairingBig ||
-            isRoomRotating) return;
-
-        Move();
-    }
-
-    // --- Movement ---
-
-    private void Move()
-    {
-        if (horizontalInput == 0) return;
-        Vector2 moveDirection = GetMoveDirection() * (horizontalInput * moveSpeed * Time.deltaTime);
-        transform.position += (Vector3)moveDirection;
-    }
-
-    private void GroundCheck()
-    {
-        RaycastHit2D hit = Physics2D.BoxCast(
-            transform.position, BoxSize,
-            transform.eulerAngles.z,
-            GetGravityVector(), RayLength, GroundLayer
-        );
-
-        if (hit.collider != null)
-        {
-            float dot = Vector2.Dot(hit.normal, -GetGravityVector());
-            bool grounded = dot >= 0.5f;
-            if (grounded)
-            {
-                hasJumped = false;
-                coyoteTimer = coyoteTime; // reset coyote timer when grounded
-            }
-        }
-        else
-        {
-            coyoteTimer -= Time.deltaTime; // count down when in air
-            if (coyoteTimer <= 0)
-                hasJumped = true;
-        }
-    }
-
-    private void Jump()
-    {
-        if (characterManager.IsHacking || isRepairingBig) return;
-        if (Input.GetKeyDown(KeyCode.Space) && (!hasJumped || coyoteTimer > 0f))
-        {
-            hasJumped = true;
-            coyoteTimer = 0f; // consume coyote time
-            jumpUpTimer = JumpUpDuration;
-            rb.AddForce(-GetGravityVector() * jumpForce, ForceMode2D.Impulse);
-        }
-    }
-
-    private void ApplyGravity()
-    {
-        rb.AddForce(GetGravityVector() * gravityStrength, ForceMode2D.Force);
-    }
-
- 
-
-    // --- Animations ---
-
-    
 
     // --- Room Rotation ---
 
@@ -204,48 +197,6 @@ public class SmallMovementScript : MonoBehaviour
             _ => 0f
         };
         transform.eulerAngles = new Vector3(0f, 0f, angle);
-    }
-
-    // --- Repair ---
-
-    private void HandleRepair()
-    {
-        if (isNearBig && Input.GetMouseButton(1) && characterManager.BigNeedsRepair)
-        {
-            isRepairingBig = true;
-            healAccumulator += RepairRate * Time.deltaTime;
-            if (healAccumulator >= 1f)
-            {
-                bigHp.Heal(Mathf.FloorToInt(healAccumulator));
-                healAccumulator = 0f;
-                if (CharacterManager.Instance.IsBigDead && !CharacterManager.Instance.BigNeedsRepair)
-                    bigHp.Revive();
-            }
-        }
-        else
-        {
-            isRepairingBig = false;
-            healAccumulator = 0f;
-        }
-    }
-
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.CompareTag("Big"))
-        {
-            isNearBig = true;
-            bigHp = other.GetComponent<BigHpScripts>();
-        }
-    }
-
-    private void OnTriggerExit2D(Collider2D other)
-    {
-        if (other.CompareTag("Big"))
-        {
-            isNearBig = false;
-            bigHp = null;
-            isRepairingBig = false;
-        }
     }
 
     // --- Helpers ---
