@@ -5,7 +5,7 @@ public class RotatingRoom : MonoBehaviour
     [Header("Rotation Settings")]
     public float RotationSpeed = 45f;
     public bool IsRotating = false;
-    public HpBar rotationProgressBar;
+    //public HpBar rotationProgressBar;
 
     [Header("Starting Rotation")]
     public float StartingRotation = 0f;
@@ -19,7 +19,7 @@ public class RotatingRoom : MonoBehaviour
         transform.eulerAngles = new Vector3(0f, 0f, StartingRotation);
         currentAngle = StartingRotation;
         targetAngle = StartingRotation;
-        rotationProgressBar.gameObject.SetActive(false);
+        //rotationProgressBar.gameObject.SetActive(false);
         small = GameObject.FindWithTag("Small").GetComponent<SmallMovementScript>();
     }
 
@@ -36,12 +36,12 @@ public class RotatingRoom : MonoBehaviour
             small.transform.RotateAround(transform.position, Vector3.forward, angleDelta);
 
         float progress = 1f - Mathf.Abs(targetAngle - currentAngle) / 90f;
-        rotationProgressBar.UpdateHp(progress * 100f);
+        //rotationProgressBar.UpdateHp(progress * 100f);
 
         if (Mathf.Approximately(currentAngle, targetAngle))
         {
             IsRotating = false;
-            rotationProgressBar.gameObject.SetActive(false);
+            //rotationProgressBar.gameObject.SetActive(false);
 
             if (small != null && small.IsInRoom)
                 small.OnRoomRotationEnd(NextGravity(small.CurrentGravity));
@@ -62,8 +62,8 @@ public class RotatingRoom : MonoBehaviour
                 small.OnRoomRotationStart();
         }
 
-        rotationProgressBar.Setup(100f, 0f);
-        rotationProgressBar.gameObject.SetActive(true);
+        //rotationProgressBar.Setup(100f, 0f);
+        //rotationProgressBar.gameObject.SetActive(true);
     }
 
     private GravityDirection NextGravity(GravityDirection current) => current switch

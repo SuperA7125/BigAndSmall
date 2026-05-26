@@ -8,7 +8,7 @@ public class Button : MonoBehaviour
     public List<Lift> ConnectedDoors = new List<Lift>();
     public List<CoopLift> ConnectedCoopLifts = new List<CoopLift>();
 
-    public HpBar hackProgressBar;
+    //public HpBar hackProgressBar;
     [SerializeField] private float hackDuration = 5f;
     [SerializeField] private bool canHack = false;
     [SerializeField] private bool isHacking = false;
@@ -21,7 +21,7 @@ public class Button : MonoBehaviour
         SetDoorsInactive();
         DeactivateLifts();
         DeactivateCoopLifts(); // add this
-        hackProgressBar.gameObject.SetActive(false);
+        //hackProgressBar.gameObject.SetActive(false);
         animator = GetComponent<Animator>();
     }
 
@@ -38,7 +38,7 @@ public class Button : MonoBehaviour
             {
                 isHacked = true;
                 canHack = false; // ADD THIS
-                hackProgressBar.gameObject.SetActive(false);
+                //hackProgressBar.gameObject.SetActive(false);
                 animator.SetBool("IsHacking", false);
                 animator.SetBool("IsSmallNear", false); 
                 animator.SetBool("IsHacked", true);
@@ -50,8 +50,8 @@ public class Button : MonoBehaviour
             }
         }
 
-        if (isHacking)
-            hackProgressBar.UpdateHp(hackTimer);
+       //if (isHacking)
+            //hackProgressBar.UpdateHp(hackTimer);
 
     }
 
@@ -78,8 +78,8 @@ public class Button : MonoBehaviour
         animator.SetBool("IsHacking", true);
         CharacterManager.Instance.IsHacking = true;
         hackTimer = hackDuration;
-        hackProgressBar.Setup(hackDuration, hackDuration); // max = hackDuration, current = full
-        hackProgressBar.gameObject.SetActive(true); // show on start
+       // hackProgressBar.Setup(hackDuration, hackDuration); // max = hackDuration, current = full
+       // hackProgressBar.gameObject.SetActive(true); // show on start
     }
 
     void SetDoorsInactive()
