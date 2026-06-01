@@ -10,15 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9d1514134bc4fbd41bb739b1b9a49231, type: 3}
-  m_Name: New Rule Tile
+  m_Name: SlimeTIle
   m_EditorClassIdentifier: Unity.2D.Tilemap.Extras::UnityEngine.RuleTile
-  m_DefaultSprite: {fileID: -1786033117320680304, guid: af60a1207b4c53c449a183d86f6693ac, type: 3}
+  m_DefaultSprite: {fileID: 164700847, guid: bfc8d5869771dc3409ddf8fa1ecfc517, type: 3}
   m_DefaultGameObject: {fileID: 0}
   m_DefaultColliderType: 1
   m_TilingRules:
   - m_Id: 0
     m_Sprites:
-    - {fileID: -2140992737, guid: 4814566a1eea69b4d94b9fa8f66fff66, type: 3}
+    - {fileID: 164700847, guid: bfc8d5869771dc3409ddf8fa1ecfc517, type: 3}
     m_GameObject: {fileID: 0}
     m_MinAnimationSpeed: 1
     m_MaxAnimationSpeed: 1
@@ -28,12 +28,12 @@ MonoBehaviour:
     m_RandomTransform: 0
     m_Neighbors: 0100000001000000
     m_NeighborPositions:
-    - {x: -1, y: 0, z: 0}
     - {x: 1, y: 0, z: 0}
+    - {x: -1, y: 0, z: 0}
     m_RuleTransform: 0
   - m_Id: 1
     m_Sprites:
-    - {fileID: 5666711339069177652, guid: 4814566a1eea69b4d94b9fa8f66fff66, type: 3}
+    - {fileID: -7610960102638746838, guid: bfc8d5869771dc3409ddf8fa1ecfc517, type: 3}
     m_GameObject: {fileID: 0}
     m_MinAnimationSpeed: 1
     m_MaxAnimationSpeed: 1
@@ -41,14 +41,14 @@ MonoBehaviour:
     m_Output: 0
     m_ColliderType: 1
     m_RandomTransform: 0
-    m_Neighbors: 0200000001000000
+    m_Neighbors: 0100000002000000
     m_NeighborPositions:
-    - {x: -1, y: 0, z: 0}
     - {x: 1, y: 0, z: 0}
+    - {x: -1, y: 0, z: 0}
     m_RuleTransform: 0
   - m_Id: 2
     m_Sprites:
-    - {fileID: -1179828117, guid: 4814566a1eea69b4d94b9fa8f66fff66, type: 3}
+    - {fileID: 2063106167, guid: bfc8d5869771dc3409ddf8fa1ecfc517, type: 3}
     m_GameObject: {fileID: 0}
     m_MinAnimationSpeed: 1
     m_MaxAnimationSpeed: 1
